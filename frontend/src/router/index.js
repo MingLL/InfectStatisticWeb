@@ -7,14 +7,14 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    redirect: 'china',
+    redirect: 'country',
     name: 'Home',
     component: Home,
     children: [
       {
-        path: 'china',
-        name: 'china',
-        component: () => import(/* webpackChunkName: "country" */ '../views/China.vue')
+        path: 'country',
+        name: 'country',
+        component: () => import(/* webpackChunkName: "country" */ '../views/Country.vue')
       },
       {
         path: 'province',
@@ -27,14 +27,14 @@ const routes = [
         component: () => import(/* webpackChunkName: "news" */ '../views/News.vue')
       },
       {
-        path: 'rumor',
-        name: 'rumor',
-        component: () => import(/* webpackChunkName: "search" */ '../views/Rumor.vue')
+        path: 'search',
+        name: 'search',
+        component: () => import(/* webpackChunkName: "search" */ '../views/Search.vue')
       },
       {
-        path: 'disknowledge',
-        name: 'disknowledge',
-        component: () => import(/* webpackChunkName: "identify" */ '../views/DiseaseKnowledge.vue')
+        path: 'identify',
+        name: 'identify',
+        component: () => import(/* webpackChunkName: "identify" */ '../views/Identify.vue')
       }
     ]
   }

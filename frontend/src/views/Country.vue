@@ -1,9 +1,8 @@
 <template>
   <div>
-    <div align="center">{{"数据更新至"+time}}</div>
     <div class="round">
       <el-row class="messages">
-        <messagelable
+        <messageshower
           v-for="(item,index) in message"
           :key="index"
           :title="item.title"
@@ -11,22 +10,20 @@
           :changenum="item.changenum"
           :styles="Styles[index]"
           :span="8"
-        ></messagelable>
+        ></messageshower>
       </el-row>
     </div>
-    <ChinaMap />
-    <Table />
+    <Map></Map>
   </div>
 </template>
 
 <script>
-import ChinaMap from "../components/ChinaMap";
-import messagelable from "../components/MessageLable";
-import Table from "../components/Table";
+import messageshower from "../components/Messageshower";
+import Map from "../components/Map";
 
 export default {
   name: "Country",
-  components: { messagelable, ChinaMap,Table},
+  components: { messageshower, Map },
   data() {
     return {
       time: "",
@@ -84,3 +81,6 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+</style>

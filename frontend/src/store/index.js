@@ -5,8 +5,12 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    active: 0
   },
   mutations: {
+    changeActive(state, value) {
+      state.active = value
+    }
   },
   actions: {
   },
