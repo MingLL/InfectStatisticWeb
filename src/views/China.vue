@@ -17,16 +17,16 @@
     <ChinaMap />
     <Table />
   </div>
-
 </template>
 
 <script>
-import ChinaMap from '../components/ChinaMap';
-import messagelable from '../components/MessageLable';
-import Table from '../components/Table';
+import ChinaMap from "../components/ChinaMap";
+import messagelable from "../components/MessageLable";
+import Table from "../components/Table";
+
 export default {
-  name: "China",
-  components: { messagelable, ChinaMap,Table },
+  name: "Country",
+  components: { messagelable, ChinaMap,Table},
   data() {
     return {
       time: "",
@@ -47,6 +47,40 @@ export default {
         { color: "#101010" }
       ]
     };
+  },
+  created() {
+    this.getData("http://localhost:8888/nations/all");
+  },
+  methods: {
+    getData(url) {
+      let that = this;
+      this.axios.get(url).then(
+        function(response) {
+          let datas = response.data;
+          that.time = datas.modifytime;
+          that.message[0].num = datas.currentconfirmedcount;
+          that.message[0].changenum = datas.currentconfirmedincr;
+          that.message[1].num = datas.suspectedcount;
+          that.message[1].changenum = datas.suspectedincr;
+          that.message[2].num = datas.seriouscount;
+          that.message[2].changenum = datas.seriousincr;
+          that.message[3].num = datas.confirmedcount;
+          that.message[3].changenum = datas.confirmedincr;
+          that.message[4].num = datas.curedcount;
+          that.message[4].changenum = datas.curedincr;
+          that.message[5].num = datas.deadcount;
+          that.message[5].changenum = datas.deadincr;
+          for (var i = 0; i < that.message.length; ++i) {
+            if (that.message[i].changenum > 0) {
+              that.message[i].changenum = "+" + that.message[i].changenum;
+            }
+          }
+        },
+        function(err) {
+          console.log(err);
+        }
+      );
+    }
   }
 };
 </script>

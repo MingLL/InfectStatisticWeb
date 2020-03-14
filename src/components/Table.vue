@@ -15,7 +15,6 @@
 </template>
 
 <script>
-import axiox from "axios";
 export default {
   name: "Table",
   props: ["province"],
@@ -25,23 +24,23 @@ export default {
     };
   },
   mounted() {
-    this.getData();
+    this.getData("http://localhost:8888/cities/list/");
   },
   methods: {
-    getData() {
+    getData(url) {
       let that = this;
-      axiox
-        .get("areastat.json")
+      this.axios
+        .get(url + encodeURI(encodeURI(that.province)))
         .then(
           function(response) {
             let datas = response.data;
             for (var i = 0; i < datas.length; ++i) {
               that.tableData.push({
-                cityname: datas[i].provinceShortName,
-                currentconfirmedcount: datas[i].currentConfirmedCount,
-                confirmedcount: datas[i].confirmedCount,
-                curedcount: datas[i].curedCount,
-                deadcount: datas[i].deadCount
+                cityname: datas[i].cityname,
+                currentconfirmedcount: datas[i].currentconfirmedcount,
+                confirmedcount: datas[i].confirmedcount,
+                curedcount: datas[i].curedcount,
+                deadcount: datas[i].deadcount
               });
             }
           },
