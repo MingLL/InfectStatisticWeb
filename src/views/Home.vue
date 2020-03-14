@@ -1,38 +1,47 @@
 <template>
   <el-container>
-    <el-header>
-      <Menu></Menu>
-    </el-header>
     <el-main>
-      <el-tabs stretch v-model="activeName" >
-        <el-tab-pane label="国内统计" name="first">
-           <Map :type="china" />
+      <el-tabs stretch v-model="activeName">
+        <el-tab-pane label="疫情地图" name="first">
+          <Map />
         </el-tab-pane>
-        <el-tab-pane label="国外统计" name="second">
-          <Map :type="world" />
+
+        <el-tab-pane label="辟谣与防护" name="second">
+          <Rumor />
         </el-tab-pane>
+
+        <el-tab-pane label="实时播报" name="third">
+          <News />
+        </el-tab-pane>
+
+        <el-tab-pane label="疾病知识" name="fourth">
+          <DisKnowledge />
+        </el-tab-pane>
+        
       </el-tabs>
-     
     </el-main>
-    <el-footer>Footer</el-footer>
   </el-container>
 </template>
 
 <script>
-import Menu from "./Menu";
 import Map from "./Map";
+import News from "./News";
+import Rumor from "./Rumor";
+import DisKnowledge from "./DiseaseKnowledge";
+
 export default {
   name: "HelloWorld",
   data() {
     return {
-      china: "china",
-      world: "world",
+      charOption: {},
       activeName: "second"
     };
   },
   components: {
-    Menu,
-    Map
+    Map,
+    News,
+    Rumor,
+    DisKnowledge
   }
 };
 </script>

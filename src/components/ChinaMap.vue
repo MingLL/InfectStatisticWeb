@@ -4,16 +4,18 @@
 
 <script>
 import echarts from "echarts";
-
 require("echarts/map/js/china");
-
+import axios from "axios";
 export default {
-  name: "Map",
-
+  data() {
+    return {
+      chartOption: {},
+      cityData: {}
+    };
+  },
   mounted() {
     // 初始化echarts实例
     this.chinachart = echarts.init(document.getElementById("china_map"));
-    // 进行相关配置
     this.chartOption = {
       title: {
         text: "疫情实时统计",
@@ -58,7 +60,6 @@ export default {
           { min: 1, max: 9, label: "1-9" },
           { value: 0, label: 0 }
         ],
-
         show: true
       },
       toolbox: {
@@ -218,12 +219,13 @@ export default {
     // 使用刚指定的配置项和数据显示地图数据
     this.chinachart.setOption(this.chartOption);
   },
-  methods: {}
+  methods: {
+    
 };
 </script>
 
 <style scoped>
-#china_map{
+#china_map {
   margin: 0 auto;
 }
 </style>
