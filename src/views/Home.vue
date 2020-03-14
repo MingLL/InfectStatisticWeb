@@ -3,7 +3,7 @@
     <el-main>
       <el-tabs stretch v-model="activeName">
         <el-tab-pane label="疫情地图" name="first">
-          <Map />
+          <China />
         </el-tab-pane>
 
         <el-tab-pane label="辟谣与防护" name="second">
@@ -17,28 +17,26 @@
         <el-tab-pane label="疾病知识" name="fourth">
           <DisKnowledge />
         </el-tab-pane>
-        
       </el-tabs>
     </el-main>
   </el-container>
 </template>
 
 <script>
-import Map from "./Map";
+import China from "./China";
 import News from "./News";
 import Rumor from "./Rumor";
 import DisKnowledge from "./DiseaseKnowledge";
 
 export default {
-  name: "HelloWorld",
+  name: "Home",
   data() {
     return {
-      charOption: {},
       activeName: "second"
     };
   },
   components: {
-    Map,
+    China,
     News,
     Rumor,
     DisKnowledge

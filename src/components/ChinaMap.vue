@@ -5,7 +5,7 @@
 <script>
 import echarts from "echarts";
 require("echarts/map/js/china");
-import axios from "axios";
+// import axios from "axios";
 export default {
   data() {
     return {
@@ -16,7 +16,7 @@ export default {
   mounted() {
     // 初始化echarts实例
     this.chinachart = echarts.init(document.getElementById("china_map"));
-    this.chartOption = {
+     this.chartOption = {
       title: {
         text: "疫情实时统计",
         subtext: "截止2020.2.26",
@@ -218,10 +218,8 @@ export default {
     };
     // 使用刚指定的配置项和数据显示地图数据
     this.chinachart.setOption(this.chartOption);
-  },
-  methods: {
-    
-};
+  }
+}
 </script>
 
 <style scoped>
