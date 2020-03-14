@@ -15,15 +15,18 @@
       </el-row>
     </div>
     <ChinaMap />
+    <Table />
   </div>
+
 </template>
 
 <script>
 import ChinaMap from '../components/ChinaMap';
 import messagelable from '../components/MessageLable';
+import Table from '../components/Table';
 export default {
   name: "China",
-  components: { messagelable, ChinaMap },
+  components: { messagelable, ChinaMap,Table },
   data() {
     return {
       time: "",

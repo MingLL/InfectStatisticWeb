@@ -5,18 +5,22 @@
 <script>
 import echarts from "echarts";
 require("echarts/map/js/china");
-// import axios from "axios";
+import axios from "axios";
 export default {
   data() {
     return {
       chartOption: {},
-      cityData: {}
+      currentConfirmedCount: [],
+      confirmedCount: [],
+      deadCount: [],
+      curedCount: []
     };
   },
   mounted() {
     // 初始化echarts实例
     this.chinachart = echarts.init(document.getElementById("china_map"));
-     this.chartOption = {
+    this.getData();
+    this.chartOption = {
       title: {
         text: "疫情实时统计",
         subtext: "截止2020.2.26",
@@ -86,6 +90,7 @@ export default {
               show: true
             }
           },
+          // data: this.currentConfirmedCount
           data: [
             { name: "北京", value: 400 },
             { name: "天津", value: 135 },
@@ -135,6 +140,7 @@ export default {
               show: true
             }
           },
+          // data: this.deadCount
           data: [
             { name: "北京", value: 4 },
             { name: "天津", value: 3 },
@@ -177,6 +183,7 @@ export default {
               show: true
             }
           },
+          // data: this.curedCount
           data: [
             { name: "北京", value: 235 },
             { name: "天津", value: 96 },
@@ -218,8 +225,34 @@ export default {
     };
     // 使用刚指定的配置项和数据显示地图数据
     this.chinachart.setOption(this.chartOption);
+  },
+  methods: {
+    getData() {
+      let that = this;
+      axios.get("areastat.json").then(res => {
+        let datas = res.data;
+        for (var i = 0; i < datas.length; i++) {
+          that.currentConfirmedCount.push({
+            name: datas[i].provinceShortName,
+            value: datas[i].currentConfirmedCount
+          });
+          that.confirmedCount.push({
+            name: datas[i].provinceShortName,
+            value: datas[i].confirmedCount
+          });
+          that.deadCount.push({
+            name: datas[i].provinceShortName,
+            value: datas[i].deadCount
+          });
+          that.curedCount.push({
+            name: datas[i].provinceShortName,
+            value: datas[i].curedCount
+          });
+        }
+      });
+    }
   }
-}
+};
 </script>
 
 <style scoped>
